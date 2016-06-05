@@ -61,9 +61,12 @@ layout: default
 	border-right:1px solid #bbb;
 }
 		</style>
-		<div id="panel1" style="position:relative;border:1px solid #ccc;width:100%;height:120px;overflow:hidden;">
-			<canvas style="width:200px;height:200px" width="400px" height="400px" id="myCanvas">
-				<canvas>
+		<div id="panel1" style="position:relative;width:100%;height:120px;overflow:hidden;">
+			<canvas style="width:200px;height:200px;float:left;" width="400px" height="400px" id="myCanvas">
+				</canvas>
+				<div style="width:100px;height:100px;float:right;">
+					<img src='/css/images/o.jpg'>
+				</div>
 				</div>
 					<style>
 .drawable{
@@ -80,6 +83,11 @@ ctx.fillStyle="#333";
 ctx.strokeStyle="#ccc";
 ctx.lineWidth = 1;
 ctx.fillRect(0,0,400,400);
+ctx.fillStyle="rgba(255,255,255,.9)";
+ctx.font="16px Georgia";
+ctx.fillText("power by:",230,222);
+ctx.font="28px Georgia";
+ctx.fillText("占海华",300,220);
 ctx.fillStyle="#666";
 for(var i = 0 ; i < 10; i ++)
 {
