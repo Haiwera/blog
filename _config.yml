@@ -10,8 +10,8 @@ title: Haiwera Blog
 email: 982220546@qq.com
 description: > # this means to ignore newlines until "baseurl:"
     我心匪石，不可转也。我心匪席，不可卷也。威仪棣棣，不可选也。
-baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://haiwera.github.io" # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://haiwera.xyz" # the base hostname & protocol for your site
 github_username:  Haiwera
 
 # Build settings
