@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>C++ 抽象工厂模式</title>
+  <meta name="description" content="文件结构">
+
+  <link rel="stylesheet" href="/blog/css/main.css">
+  <link rel="canonical" href="https://haiwera.github.io/blog/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/c++/%E5%88%9B%E5%BB%BA%E5%9E%8B/2016/06/05/cpp-factorymethod.html">
+  <link rel="alternate" type="application/rss+xml" title="Haiwera Blog" href="https://haiwera.github.io/blog/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/blog/">Haiwera Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">C++ 抽象工厂模式</h1>
+    <p class="post-meta"><time datetime="2016-06-05T10:27:35+08:00" itemprop="datePublished">Jun 5, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>文件结构</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>├── Creator.hpp				<span class="c">#抽象工厂类</span>
+├── Product.hpp				<span class="c">#抽象产品类</span>
+├── ConcreteBallCreator.hpp			<span class="c">#实际工厂2</span>
+├── ConcreteCreator.hpp			<span class="c">#实际工厂1</span>
+├── ConcreteProduct.hpp			<span class="c">#实际产品1</span>
+├── ConcreteBall.hpp				<span class="c">#实际产品2</span>
+├── ConcreteBall.cpp
+├── ConcreteBallCreator.cpp
+├── ConcreteCreator.cpp
+├── ConcreteProduct.cpp
+├── Creator.cpp
+├── Product.cpp
+└── main.cpp
+</code></pre>
+</div>
+<p>Product.hpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __PRODUCT_H__
+#define __PRODUCT_H__
+#include &lt;string&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="n">haiwera</span>
+<span class="p">{</span>
+	<span class="k">class</span> <span class="nc">Product</span><span class="p">{</span>
+		<span class="k">public</span> <span class="o">:</span>
+			<span class="n">Product</span><span class="p">();</span>
+			<span class="k">virtual</span> <span class="kt">void</span> <span class="n">doSomething</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">};</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre>
+</div>
+<p>Creator.hpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CREATOR_H__
+#define __CREATOR_H__
+#include "Product.hpp" 
+</span>
+<span class="k">namespace</span> <span class="n">haiwera</span>
+<span class="p">{</span>
+	<span class="k">class</span> <span class="nc">Creator</span>
+	<span class="p">{</span>
+		<span class="k">public</span> <span class="o">:</span>
+			<span class="n">Creator</span><span class="p">();</span>
+			<span class="k">virtual</span> <span class="n">Product</span><span class="o">*</span> <span class="n">FactoryMethod</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">};</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre>
+</div>
+<p>ConcreteBall.hpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETEBALL_H__
+#define __CONCRETEBALL_H__
+#include "Product.hpp"
+</span>
+<span class="k">namespace</span> <span class="n">haiwera</span>
+<span class="p">{</span>
+	<span class="k">class</span> <span class="nc">ConcreteBall</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Product</span>
+	<span class="p">{</span>
+		<span class="k">public</span><span class="o">:</span>
+			<span class="n">ConcreteBall</span><span class="p">();</span>
+			<span class="kt">void</span> <span class="n">doSomething</span><span class="p">();</span>
+	<span class="p">};</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre>
+</div>
+<p>ConcreteBallCreator.hpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETEBALLCREATOR_H__
+#define __CONCRETEBALLCREATOR_H__
+</span>
+<span class="cp">#include "Creator.hpp"
+#include "Product.hpp"
+</span>
+<span class="k">namespace</span> <span class="n">haiwera</span>
+<span class="p">{</span>
+	<span class="k">class</span> <span class="nc">ConcreteBallCreator</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Creator</span>
+	<span class="p">{</span>
+		<span class="k">public</span><span class="o">:</span>
+			<span class="n">ConcreteBallCreator</span><span class="p">();</span>
+			<span class="n">Product</span><span class="o">*</span> <span class="n">FactoryMethod</span><span class="p">();</span>
+	<span class="p">};</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre>
+</div>
+<p>ConcreteCreator.hpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETECREATOR_H__
+#define __CONCRETECREATOR_H__
+#include "Creator.hpp"
+#include "Product.hpp"
+</span>
+<span class="k">namespace</span> <span class="n">haiwera</span>
+<span class="p">{</span>
+	<span class="k">class</span> <span class="nc">ConcreteCreator</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Creator</span><span class="p">{</span>
+		<span class="k">public</span> <span class="o">:</span>
+			<span class="n">ConcreteCreator</span><span class="p">();</span>
+			<span class="n">Product</span><span class="o">*</span> <span class="n">FactoryMethod</span><span class="p">();</span>
+
+	<span class="p">};</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre>
+</div>
+<p>ConcreteProduct.hpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETEPRODUCT_H__
+#define __CONCRETEPRODUCT_H__
+</span>
+<span class="cp">#include "Product.hpp"
+</span>
+<span class="k">namespace</span> <span class="n">haiwera</span>
+<span class="p">{</span>
+	<span class="k">class</span> <span class="nc">ConcreteProduct</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Product</span>
+	<span class="p">{</span>
+		<span class="k">public</span> <span class="o">:</span>
+			<span class="n">ConcreteProduct</span><span class="p">();</span>
+			<span class="kt">void</span> <span class="n">doSomething</span><span class="p">();</span>
+	<span class="p">};</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre>
+</div>
+<p>ConcreteBall.cpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteBall.hpp"
+#include &lt;iostream&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
+
+<span class="n">ConcreteBall</span><span class="o">::</span><span class="n">ConcreteBall</span><span class="p">(){</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">ConcreteBall</span><span class="o">::</span><span class="n">doSomething</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"ConcreteBall do something"</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>ConcreteBallCreator.cpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteBallCreator.hpp"
+#include "Product.hpp"
+#include "ConcreteBall.hpp"
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
+
+<span class="n">ConcreteBallCreator</span><span class="o">::</span><span class="n">ConcreteBallCreator</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="n">Product</span><span class="o">*</span> <span class="n">ConcreteBallCreator</span><span class="o">::</span><span class="n">FactoryMethod</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteBall</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>ConcreteCreator.cpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteCreator.hpp"
+#include "ConcreteProduct.hpp"
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
+
+<span class="n">ConcreteCreator</span><span class="o">::</span><span class="n">ConcreteCreator</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="n">Product</span><span class="o">*</span> <span class="n">ConcreteCreator</span><span class="o">::</span><span class="n">FactoryMethod</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="k">return</span> <span class="k">new</span> <span class="n">ConcreteProduct</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>ConcreteProduct.cpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteProduct.hpp"
+#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
+
+<span class="n">ConcreteProduct</span><span class="o">::</span><span class="n">ConcreteProduct</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">ConcreteProduct</span><span class="o">::</span><span class="n">doSomething</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"ConcreteProduct do something"</span> <span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>Creator.cpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "Creator.hpp"
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
+
+<span class="n">Creator</span><span class="o">::</span><span class="n">Creator</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>Product.cpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "Product.hpp"
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
+
+<span class="n">Product</span><span class="o">::</span><span class="n">Product</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>main.cpp</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "Creator.hpp"
+#include "ConcreteCreator.hpp"
+#include "ConcreteBallCreator.hpp"
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+	<span class="n">Creator</span><span class="o">*</span> <span class="n">creat</span> <span class="o">=</span>  <span class="k">new</span> <span class="n">ConcreteCreator</span><span class="p">();</span>
+	<span class="n">Product</span><span class="o">*</span> <span class="n">prt</span>  <span class="o">=</span> <span class="n">creat</span><span class="o">-&gt;</span><span class="n">FactoryMethod</span><span class="p">();</span>
+	<span class="n">prt</span><span class="o">-&gt;</span><span class="n">doSomething</span><span class="p">();</span>
+	<span class="n">creat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteBallCreator</span><span class="p">();</span>
+	<span class="n">prt</span> <span class="o">=</span> <span class="n">creat</span><span class="o">-&gt;</span><span class="n">FactoryMethod</span><span class="p">();</span>
+	<span class="n">prt</span><span class="o">-&gt;</span><span class="n">doSomething</span><span class="p">();</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>创建完这些文件之后，使用autotools工具包中的<code class="highlighter-rouge">autoscan</code>扫描目录，会生成一个<code class="highlighter-rouge">configure.ac</code> 的文件，将文件修改为以下内容
+configure.ac</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>AC_PREREQ<span class="o">([</span>2.69]<span class="o">)</span>
+AC_INIT<span class="o">([</span>factorymethod],[1.0],982220546@qq.com<span class="o">)</span>
+AC_CONFIG_SRCDIR<span class="o">([</span>main.cpp]<span class="o">)</span>
+AC_CONFIG_HEADERS<span class="o">([</span>config.h]<span class="o">)</span>
+AM_INIT_AUTOMAKE
+<span class="c"># Checks for programs.</span>
+AC_PROG_CPP
+AC_PROG_CXX
+<span class="c"># Checks for libraries.</span>
+
+<span class="c"># Checks for header files.</span>
+
+<span class="c"># Checks for typedefs, structures, and compiler characteristics.</span>
+
+<span class="c"># Checks for library functions.</span>
+
+AC_OUTPUT<span class="o">([</span>Makefile]<span class="o">)</span>
+</code></pre>
+</div>
+
+<p>将文件更名为<code class="highlighter-rouge">configure.in</code> 依次执行 <code class="highlighter-rouge">aclocal</code>;<code class="highlighter-rouge">autoconf</code>; 会生成<code class="highlighter-rouge">configure</code> 文件，新建一个 <code class="highlighter-rouge">Makefile.am</code> 文件，写入以下内容</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>UTOMAKE_OPTIONS <span class="o">=</span> foreign
+<span class="nv">bin_PROGRAMS</span><span class="o">=</span>main
+<span class="nv">main_SOURCES</span><span class="o">=</span>ConcreteBall.cpp <span class="se">\</span>
+ConcreteCreator.hpp     <span class="se">\ </span>  
+Product.cpp <span class="se">\</span>
+ConcreteBall.hpp        <span class="se">\ </span>  
+ConcreteProduct.cpp     <span class="se">\ </span>  
+Product.hpp         <span class="se">\ </span>  
+ConcreteBallCreator.cpp     <span class="se">\ </span>  
+ConcreteProduct.hpp     <span class="se">\ </span>  
+main.cpp <span class="se">\</span>
+ConcreteBallCreator.hpp     <span class="se">\ </span>  
+Creator.cpp     <span class="se">\ </span>  
+ConcreteCreator.cpp     <span class="se">\ </span>  
+Creator.hpp
+</code></pre>
+</div>
+<p>执行<code class="highlighter-rouge">automake</code> 会生成 <code class="highlighter-rouge">Makefile</code> ,然后执行 <code class="highlighter-rouge">./configure</code> 检测环境 ，通过后执行 <code class="highlighter-rouge">make</code> 就会生成可执行文件 <code class="highlighter-rouge">main</code></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Haiwera Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Haiwera Blog</li>
+          <li><a href="mailto:982220546@qq.com">982220546@qq.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/Haiwera"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">Haiwera</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>我心匪石，不可转也。我心匪席，不可卷也。威仪棣棣，不可选也。
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
