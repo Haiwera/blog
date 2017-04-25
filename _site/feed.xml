@@ -6,15 +6,15 @@
 </description>
     <link>http://haiwera.xyz/</link>
     <atom:link href="http://haiwera.xyz/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 08 Sep 2016 14:57:32 +0800</pubDate>
-    <lastBuildDate>Thu, 08 Sep 2016 14:57:32 +0800</lastBuildDate>
-    <generator>Jekyll v3.1.6</generator>
+    <pubDate>Tue, 25 Apr 2017 18:16:29 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Apr 2017 18:16:29 +0800</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
     
       <item>
         <title>C++ 抽象工厂模式</title>
         <description>&lt;p&gt;文件结构&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── Creator.hpp				&lt;span class=&quot;c&quot;&gt;#抽象工厂类&lt;/span&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── Creator.hpp				&lt;span class=&quot;c&quot;&gt;#抽象工厂类&lt;/span&gt;
 ├── Product.hpp				&lt;span class=&quot;c&quot;&gt;#抽象产品类&lt;/span&gt;
 ├── ConcreteBallCreator.hpp			&lt;span class=&quot;c&quot;&gt;#实际工厂2&lt;/span&gt;
 ├── ConcreteCreator.hpp			&lt;span class=&quot;c&quot;&gt;#实际工厂1&lt;/span&gt;
@@ -31,7 +31,7 @@
 &lt;/div&gt;
 &lt;p&gt;Product.hpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __PRODUCT_H__
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __PRODUCT_H__
 #define __PRODUCT_H__
 #include &amp;lt;string&amp;gt;
 &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -50,7 +50,7 @@
 &lt;/div&gt;
 &lt;p&gt;Creator.hpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CREATOR_H__
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CREATOR_H__
 #define __CREATOR_H__
 #include &quot;Product.hpp&quot; 
 &lt;/span&gt;
@@ -69,7 +69,7 @@
 &lt;/div&gt;
 &lt;p&gt;ConcreteBall.hpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CONCRETEBALL_H__
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CONCRETEBALL_H__
 #define __CONCRETEBALL_H__
 #include &quot;Product.hpp&quot;
 &lt;/span&gt;
@@ -88,7 +88,7 @@
 &lt;/div&gt;
 &lt;p&gt;ConcreteBallCreator.hpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CONCRETEBALLCREATOR_H__
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CONCRETEBALLCREATOR_H__
 #define __CONCRETEBALLCREATOR_H__
 &lt;/span&gt;
 &lt;span class=&quot;cp&quot;&gt;#include &quot;Creator.hpp&quot;
@@ -109,7 +109,7 @@
 &lt;/div&gt;
 &lt;p&gt;ConcreteCreator.hpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CONCRETECREATOR_H__
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CONCRETECREATOR_H__
 #define __CONCRETECREATOR_H__
 #include &quot;Creator.hpp&quot;
 #include &quot;Product.hpp&quot;
@@ -129,7 +129,7 @@
 &lt;/div&gt;
 &lt;p&gt;ConcreteProduct.hpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CONCRETEPRODUCT_H__
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#ifndef __CONCRETEPRODUCT_H__
 #define __CONCRETEPRODUCT_H__
 &lt;/span&gt;
 &lt;span class=&quot;cp&quot;&gt;#include &quot;Product.hpp&quot;
@@ -149,7 +149,7 @@
 &lt;/div&gt;
 &lt;p&gt;ConcreteBall.cpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;ConcreteBall.hpp&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;ConcreteBall.hpp&quot;
 #include &amp;lt;iostream&amp;gt;
 &lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -167,7 +167,7 @@
 &lt;/div&gt;
 &lt;p&gt;ConcreteBallCreator.cpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;ConcreteBallCreator.hpp&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;ConcreteBallCreator.hpp&quot;
 #include &quot;Product.hpp&quot;
 #include &quot;ConcreteBall.hpp&quot;
 &lt;/span&gt;
@@ -186,7 +186,7 @@
 &lt;/div&gt;
 &lt;p&gt;ConcreteCreator.cpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;ConcreteCreator.hpp&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;ConcreteCreator.hpp&quot;
 #include &quot;ConcreteProduct.hpp&quot;
 &lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -205,7 +205,7 @@
 &lt;/div&gt;
 &lt;p&gt;ConcreteProduct.cpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;ConcreteProduct.hpp&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;ConcreteProduct.hpp&quot;
 #include &amp;lt;iostream&amp;gt;
 &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;haiwera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -223,7 +223,7 @@
 &lt;/div&gt;
 &lt;p&gt;Creator.cpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;Creator.hpp&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;Creator.hpp&quot;
 &lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;haiwera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -235,7 +235,7 @@
 &lt;/div&gt;
 &lt;p&gt;Product.cpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;Product.hpp&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;Product.hpp&quot;
 &lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;haiwera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -247,7 +247,7 @@
 &lt;/div&gt;
 &lt;p&gt;main.cpp&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;Creator.hpp&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;Creator.hpp&quot;
 #include &quot;ConcreteCreator.hpp&quot;
 #include &quot;ConcreteBallCreator.hpp&quot;
 &lt;/span&gt;
@@ -269,7 +269,7 @@
 &lt;p&gt;创建完这些文件之后，使用autotools工具包中的&lt;code class=&quot;highlighter-rouge&quot;&gt;autoscan&lt;/code&gt;扫描目录，会生成一个&lt;code class=&quot;highlighter-rouge&quot;&gt;configure.ac&lt;/code&gt; 的文件，将文件修改为以下内容
 configure.ac&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;AC_PREREQ&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;2.69]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;AC_PREREQ&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;2.69]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 AC_INIT&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;factorymethod],[1.0],982220546@qq.com&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 AC_CONFIG_SRCDIR&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;main.cpp]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 AC_CONFIG_HEADERS&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;config.h]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -291,7 +291,7 @@ AC_OUTPUT&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;Makefile]&lt;span class=
 
 &lt;p&gt;将文件更名为&lt;code class=&quot;highlighter-rouge&quot;&gt;configure.in&lt;/code&gt; 依次执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;aclocal&lt;/code&gt;;&lt;code class=&quot;highlighter-rouge&quot;&gt;autoconf&lt;/code&gt;; 会生成&lt;code class=&quot;highlighter-rouge&quot;&gt;configure&lt;/code&gt; 文件，新建一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;Makefile.am&lt;/code&gt; 文件，写入以下内容&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;UTOMAKE_OPTIONS &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; foreign
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;UTOMAKE_OPTIONS &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; foreign
 &lt;span class=&quot;nv&quot;&gt;bin_PROGRAMS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;main
 &lt;span class=&quot;nv&quot;&gt;main_SOURCES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ConcreteBall.cpp &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 ConcreteCreator.hpp     &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;  

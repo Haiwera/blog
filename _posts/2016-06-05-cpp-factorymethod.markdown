@@ -4,9 +4,10 @@ title:  "C++ 抽象工厂模式"
 date:   2016-06-05 10:27:35 +0800
 categories: 设计模式 C++ 创建型
 ---
+
 文件结构
 
-```shell
+~~~shell
 ├── Creator.hpp				#抽象工厂类
 ├── Product.hpp				#抽象产品类
 ├── ConcreteBallCreator.hpp			#实际工厂2
@@ -20,10 +21,10 @@ categories: 设计模式 C++ 创建型
 ├── Creator.cpp
 ├── Product.cpp
 └── main.cpp
-```
+~~~
 Product.hpp
 
-```c++
+~~~c++
 #ifndef __PRODUCT_H__
 #define __PRODUCT_H__
 #include <string>
@@ -39,10 +40,10 @@ namespace haiwera
 }
 
 #endif
-```
+~~~
 Creator.hpp
 
-```c++
+~~~c++
 #ifndef __CREATOR_H__
 #define __CREATOR_H__
 #include "Product.hpp" 
@@ -58,10 +59,10 @@ namespace haiwera
 }
 
 #endif
-```
+~~~
 ConcreteBall.hpp
 
-```c++
+~~~c++
 #ifndef __CONCRETEBALL_H__
 #define __CONCRETEBALL_H__
 #include "Product.hpp"
@@ -77,10 +78,10 @@ namespace haiwera
 }
 
 #endif
-```
+~~~
 ConcreteBallCreator.hpp
 
-```c++
+~~~c++
 #ifndef __CONCRETEBALLCREATOR_H__
 #define __CONCRETEBALLCREATOR_H__
 
@@ -98,10 +99,10 @@ namespace haiwera
 }
 
 #endif
-```
+~~~
 ConcreteCreator.hpp
 
-```c++
+~~~c++
 #ifndef __CONCRETECREATOR_H__
 #define __CONCRETECREATOR_H__
 #include "Creator.hpp"
@@ -118,10 +119,10 @@ namespace haiwera
 }
 
 #endif
-```
+~~~
 ConcreteProduct.hpp
 
-```c++
+~~~c++
 #ifndef __CONCRETEPRODUCT_H__
 #define __CONCRETEPRODUCT_H__
 
@@ -138,10 +139,10 @@ namespace haiwera
 }
 
 #endif
-```
+~~~
 ConcreteBall.cpp
 
-```c++
+~~~c++
 #include "ConcreteBall.hpp"
 #include <iostream>
 
@@ -156,10 +157,10 @@ void ConcreteBall::doSomething()
 {
 	cout<<"ConcreteBall do something"<<endl;
 }
-```
+~~~
 ConcreteBallCreator.cpp
 
-```c++
+~~~c++
 #include "ConcreteBallCreator.hpp"
 #include "Product.hpp"
 #include "ConcreteBall.hpp"
@@ -175,10 +176,10 @@ Product* ConcreteBallCreator::FactoryMethod()
 {
 	return new ConcreteBall();
 }
-```
+~~~
 ConcreteCreator.cpp
 
-```c++
+~~~c++
 #include "ConcreteCreator.hpp"
 #include "ConcreteProduct.hpp"
 
@@ -194,10 +195,10 @@ Product* ConcreteCreator::FactoryMethod()
 {
 	return new ConcreteProduct();
 }
-```
+~~~
 ConcreteProduct.cpp
 
-```c++
+~~~c++
 #include "ConcreteProduct.hpp"
 #include <iostream>
 using namespace std;
@@ -212,10 +213,10 @@ void ConcreteProduct::doSomething()
 {
 	cout<<"ConcreteProduct do something" <<endl;
 }
-```
+~~~
 Creator.cpp
 
-```c++
+~~~c++
 #include "Creator.hpp"
 
 using namespace haiwera;
@@ -224,10 +225,10 @@ Creator::Creator()
 {
 
 }
-```
+~~~
 Product.cpp
 
-```c++
+~~~c++
 #include "Product.hpp"
 
 using namespace haiwera;
@@ -236,10 +237,10 @@ Product::Product()
 {
 
 }
-```
+~~~
 main.cpp
 
-```c++
+~~~c++
 #include "Creator.hpp"
 #include "ConcreteCreator.hpp"
 #include "ConcreteBallCreator.hpp"
@@ -257,11 +258,11 @@ int main()
 	prt->doSomething();
 	return 0;
 }
-```
+~~~
 创建完这些文件之后，使用autotools工具包中的`autoscan`扫描目录，会生成一个`configure.ac` 的文件，将文件修改为以下内容
 configure.ac
 
-```shell
+~~~shell
 AC_PREREQ([2.69])
 AC_INIT([factorymethod],[1.0],982220546@qq.com)
 AC_CONFIG_SRCDIR([main.cpp])
@@ -279,11 +280,11 @@ AC_PROG_CXX
 # Checks for library functions.
 
 AC_OUTPUT([Makefile])
-```
+~~~
 
 将文件更名为`configure.in` 依次执行 `aclocal`;`autoconf`; 会生成`configure` 文件，新建一个 `Makefile.am` 文件，写入以下内容
 
-```shell
+~~~shell
 UTOMAKE_OPTIONS = foreign
 bin_PROGRAMS=main
 main_SOURCES=ConcreteBall.cpp \
@@ -299,5 +300,5 @@ ConcreteBallCreator.hpp     \
 Creator.cpp     \   
 ConcreteCreator.cpp     \   
 Creator.hpp
-```
+~~~
 执行`automake` 会生成 `Makefile` ,然后执行 `./configure` 检测环境 ，通过后执行 `make` 就会生成可执行文件 `main`

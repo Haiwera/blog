@@ -10,6 +10,7 @@
   <meta name="description" content="文件结构">
 
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/codelight.css">
   <link rel="canonical" href="http://haiwera.xyz/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/c++/%E5%88%9B%E5%BB%BA%E5%9E%8B/2016/06/05/cpp-factorymethod.html">
   <link rel="alternate" type="application/rss+xml" title="Haiwera Blog" href="http://haiwera.xyz/feed.xml">
 </head>
@@ -64,7 +65,7 @@
   <div class="post-content" itemprop="articleBody">
     <p>文件结构</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>├── Creator.hpp				<span class="c">#抽象工厂类</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>├── Creator.hpp				<span class="c">#抽象工厂类</span>
 ├── Product.hpp				<span class="c">#抽象产品类</span>
 ├── ConcreteBallCreator.hpp			<span class="c">#实际工厂2</span>
 ├── ConcreteCreator.hpp			<span class="c">#实际工厂1</span>
@@ -81,7 +82,7 @@
 </div>
 <p>Product.hpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __PRODUCT_H__
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __PRODUCT_H__
 #define __PRODUCT_H__
 #include &lt;string&gt;
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
@@ -100,7 +101,7 @@
 </div>
 <p>Creator.hpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CREATOR_H__
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CREATOR_H__
 #define __CREATOR_H__
 #include "Product.hpp" 
 </span>
@@ -119,7 +120,7 @@
 </div>
 <p>ConcreteBall.hpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETEBALL_H__
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETEBALL_H__
 #define __CONCRETEBALL_H__
 #include "Product.hpp"
 </span>
@@ -138,7 +139,7 @@
 </div>
 <p>ConcreteBallCreator.hpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETEBALLCREATOR_H__
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETEBALLCREATOR_H__
 #define __CONCRETEBALLCREATOR_H__
 </span>
 <span class="cp">#include "Creator.hpp"
@@ -159,7 +160,7 @@
 </div>
 <p>ConcreteCreator.hpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETECREATOR_H__
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETECREATOR_H__
 #define __CONCRETECREATOR_H__
 #include "Creator.hpp"
 #include "Product.hpp"
@@ -179,7 +180,7 @@
 </div>
 <p>ConcreteProduct.hpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETEPRODUCT_H__
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#ifndef __CONCRETEPRODUCT_H__
 #define __CONCRETEPRODUCT_H__
 </span>
 <span class="cp">#include "Product.hpp"
@@ -199,7 +200,7 @@
 </div>
 <p>ConcreteBall.cpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteBall.hpp"
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteBall.hpp"
 #include &lt;iostream&gt;
 </span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
@@ -217,7 +218,7 @@
 </div>
 <p>ConcreteBallCreator.cpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteBallCreator.hpp"
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteBallCreator.hpp"
 #include "Product.hpp"
 #include "ConcreteBall.hpp"
 </span>
@@ -236,7 +237,7 @@
 </div>
 <p>ConcreteCreator.cpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteCreator.hpp"
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteCreator.hpp"
 #include "ConcreteProduct.hpp"
 </span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
@@ -255,7 +256,7 @@
 </div>
 <p>ConcreteProduct.cpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteProduct.hpp"
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "ConcreteProduct.hpp"
 #include &lt;iostream&gt;
 </span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
@@ -273,7 +274,7 @@
 </div>
 <p>Creator.cpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "Creator.hpp"
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "Creator.hpp"
 </span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
 
@@ -285,7 +286,7 @@
 </div>
 <p>Product.cpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "Product.hpp"
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "Product.hpp"
 </span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">haiwera</span><span class="p">;</span>
 
@@ -297,7 +298,7 @@
 </div>
 <p>main.cpp</p>
 
-<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "Creator.hpp"
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include "Creator.hpp"
 #include "ConcreteCreator.hpp"
 #include "ConcreteBallCreator.hpp"
 </span>
@@ -319,7 +320,7 @@
 <p>创建完这些文件之后，使用autotools工具包中的<code class="highlighter-rouge">autoscan</code>扫描目录，会生成一个<code class="highlighter-rouge">configure.ac</code> 的文件，将文件修改为以下内容
 configure.ac</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>AC_PREREQ<span class="o">([</span>2.69]<span class="o">)</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>AC_PREREQ<span class="o">([</span>2.69]<span class="o">)</span>
 AC_INIT<span class="o">([</span>factorymethod],[1.0],982220546@qq.com<span class="o">)</span>
 AC_CONFIG_SRCDIR<span class="o">([</span>main.cpp]<span class="o">)</span>
 AC_CONFIG_HEADERS<span class="o">([</span>config.h]<span class="o">)</span>
@@ -341,7 +342,7 @@ AC_OUTPUT<span class="o">([</span>Makefile]<span class="o">)</span>
 
 <p>将文件更名为<code class="highlighter-rouge">configure.in</code> 依次执行 <code class="highlighter-rouge">aclocal</code>;<code class="highlighter-rouge">autoconf</code>; 会生成<code class="highlighter-rouge">configure</code> 文件，新建一个 <code class="highlighter-rouge">Makefile.am</code> 文件，写入以下内容</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>UTOMAKE_OPTIONS <span class="o">=</span> foreign
+<div class="highlighter-rouge"><pre class="highlight"><code>UTOMAKE_OPTIONS <span class="o">=</span> foreign
 <span class="nv">bin_PROGRAMS</span><span class="o">=</span>main
 <span class="nv">main_SOURCES</span><span class="o">=</span>ConcreteBall.cpp <span class="se">\</span>
 ConcreteCreator.hpp     <span class="se">\ </span>  
@@ -404,6 +405,11 @@ Creator.hpp
   </div>
 
 </footer>
+<!-- jQuery -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
   </body>
