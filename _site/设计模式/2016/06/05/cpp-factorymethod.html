@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>C++ 抽象工厂模式</title>
-  <meta name="description" content="文件结构">
+  <title>C++ 抽象工厂模式简单实现</title>
+  <meta name="description" content="抽象工厂模式是所有形态的工厂模式中最为抽象和最具一般性的一种形态。抽象工厂模式是指当有多个抽象角色时，使用的一种工厂模式。抽象工厂模式可以向客户端提供一个接口，使客户端在不必指定产品的具体的情况下，创建多个产品族中的产品对象。">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/codelight.css">
-  <link rel="canonical" href="http://haiwera.xyz/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/c++/%E5%88%9B%E5%BB%BA%E5%9E%8B/2016/06/05/cpp-factorymethod.html">
+  <link rel="canonical" href="http://haiwera.xyz/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016/06/05/cpp-factorymethod.html">
   <link rel="alternate" type="application/rss+xml" title="Haiwera Blog" href="http://haiwera.xyz/feed.xml">
 </head>
 
@@ -55,15 +55,35 @@
 
     <div class="page-content">
       <div class="wrapper">
+		<div class="page-menu">
+			<div class="left-menu">
+
+<h2>设计模式(<span>1</span>)</h2>
+<ul class="arc-list">
+	
+	<li><a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016/06/05/cpp-factorymethod.html">C++ 抽象工厂模式简单实现</a></li>
+	<!-- 05/06/2016 -->
+	
+</ul>
+
+</div>
+
+		</div>
+		<div class="main-content">
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">C++ 抽象工厂模式</h1>
+    <h1 class="post-title" itemprop="name headline">C++ 抽象工厂模式简单实现</h1>
     <p class="post-meta"><time datetime="2016-06-05T10:27:35+08:00" itemprop="datePublished">Jun 5, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>文件结构</p>
+    <p>抽象工厂模式是所有形态的工厂模式中最为抽象和最具一般性的一种形态。抽象工厂模式是指当有多个抽象角色时，使用的一种工厂模式。抽象工厂模式可以向客户端提供一个接口，使客户端在不必指定产品的具体的情况下，创建多个产品族中的产品对象。
+<!--break--></p>
+
+<p>根据里氏替换原则，任何接受父类型的地方，都应当能够接受子类型。因此，实际上系统所需要的，仅仅是类型与这些抽象产品角色相同的一些实例，而不是这些抽象产品的实例。换言之，也就是这些抽象产品的具体子类的实例。工厂类负责创建抽象产品的具体子类的实例。</p>
+
+<p>文件结构</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>├── Creator.hpp				<span class="c">#抽象工厂类</span>
 ├── Product.hpp				<span class="c">#抽象产品类</span>
@@ -365,6 +385,7 @@ Creator.hpp
 
 </article>
 
+		</div>
       </div>
     </div>
 

@@ -8,6 +8,9 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
+p{
+	text-indent:2em;
+}
 
 
 /**
@@ -186,6 +189,15 @@ pre {
     }
 }
 
+.main-content{
+	margin-left:300px;
+
+}
+.page-menu{
+	width:250px;
+	float:left;
+	border-right:1px solid #ccc;
+}
 
 
 /**
@@ -204,3 +216,4 @@ pre {
         }
     }
 }
+

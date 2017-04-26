@@ -134,39 +134,6 @@
 .highlight .nf {
 	color: #a6e22e;
 }
-.highlight .vc {
-	color: #ffffff;
-}
-.highlight .nn {
-	color: #ffffff;
-}
-.highlight .nl {
-	color: #ffffff;
-}
-.highlight .ni {
-	color: #ffffff;
-}
-.highlight .bp {
-	color: #ffffff;
-}
-.highlight .vg {
-	color: #ffffff;
-}
-.highlight .vi {
-	color: #ffffff;
-}
-.highlight .nv {
-	color: #ffffff;
-}
-.highlight .w {
-	color: #ffffff;
-}
-.highlight {
-	color: #ffffff;
-}
-.highlight .n, .highlight .py, .highlight .nx {
-	color: #ffffff;
-}
 .highlight .ow {
 	color: #f92672;
 }
@@ -187,7 +154,7 @@
 }
 div[class="highlight"] > pre > code[class*="language-"] {
 	background:black;
-	color:#f8f8f2;
+	color:#a6e22e;
 }
 div[class="highlight"] > pre {
 	background:black;
@@ -195,12 +162,12 @@ div[class="highlight"] > pre {
 figure[class="highlight"] > pre > code[class*="language-"] {
 	text-align:left;
 	background:black;
-	color:#f8f8f2;
+	color:#a6e22e;
 }
 figure[class="highlight"] > pre > code[class*="language-"] td > pre{
 	text-align:left;
 	background:black;
-	color:#f8f8f2;
+	color:#a6e22e;
 }
 figure[class="highlight"] > pre {
 	text-align:left;
@@ -208,9 +175,9 @@ figure[class="highlight"] > pre {
 }
 div[class="highlighter-rouge"] > pre[class="highlight"] > code{
 	background:black;
-	color:#f8f8f2;
+	color:#a6e22e;
 }
 div[class="highlighter-rouge"] > pre[class="highlight"] {
 	background:black;
 }
-.lineno {color: #f8f8f2 } /*Number of line*/
+.lineno {color: #a6e22e } /*Number of line*/

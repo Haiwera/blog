@@ -6,13 +6,18 @@
 </description>
     <link>http://haiwera.xyz/</link>
     <atom:link href="http://haiwera.xyz/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 25 Apr 2017 18:16:29 +0800</pubDate>
-    <lastBuildDate>Tue, 25 Apr 2017 18:16:29 +0800</lastBuildDate>
+    <pubDate>Wed, 26 Apr 2017 13:49:47 +0800</pubDate>
+    <lastBuildDate>Wed, 26 Apr 2017 13:49:47 +0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
-        <title>C++ 抽象工厂模式</title>
-        <description>&lt;p&gt;文件结构&lt;/p&gt;
+        <title>C++ 抽象工厂模式简单实现</title>
+        <description>&lt;p&gt;抽象工厂模式是所有形态的工厂模式中最为抽象和最具一般性的一种形态。抽象工厂模式是指当有多个抽象角色时，使用的一种工厂模式。抽象工厂模式可以向客户端提供一个接口，使客户端在不必指定产品的具体的情况下，创建多个产品族中的产品对象。
+&lt;!--break--&gt;&lt;/p&gt;
+
+&lt;p&gt;根据里氏替换原则，任何接受父类型的地方，都应当能够接受子类型。因此，实际上系统所需要的，仅仅是类型与这些抽象产品角色相同的一些实例，而不是这些抽象产品的实例。换言之，也就是这些抽象产品的具体子类的实例。工厂类负责创建抽象产品的具体子类的实例。&lt;/p&gt;
+
+&lt;p&gt;文件结构&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├── Creator.hpp				&lt;span class=&quot;c&quot;&gt;#抽象工厂类&lt;/span&gt;
 ├── Product.hpp				&lt;span class=&quot;c&quot;&gt;#抽象产品类&lt;/span&gt;
@@ -311,15 +316,13 @@ Creator.hpp
 &lt;p&gt;执行&lt;code class=&quot;highlighter-rouge&quot;&gt;automake&lt;/code&gt; 会生成 &lt;code class=&quot;highlighter-rouge&quot;&gt;Makefile&lt;/code&gt; ,然后执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;./configure&lt;/code&gt; 检测环境 ，通过后执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;make&lt;/code&gt; 就会生成可执行文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 05 Jun 2016 10:27:35 +0800</pubDate>
-        <link>http://haiwera.xyz/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/c++/%E5%88%9B%E5%BB%BA%E5%9E%8B/2016/06/05/cpp-factorymethod.html</link>
-        <guid isPermaLink="true">http://haiwera.xyz/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/c++/%E5%88%9B%E5%BB%BA%E5%9E%8B/2016/06/05/cpp-factorymethod.html</guid>
+        <link>http://haiwera.xyz/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016/06/05/cpp-factorymethod.html</link>
+        <guid isPermaLink="true">http://haiwera.xyz/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016/06/05/cpp-factorymethod.html</guid>
+        
+        <category>设计模式,c++</category>
         
         
         <category>设计模式</category>
-        
-        <category>C++</category>
-        
-        <category>创建型</category>
         
       </item>
     
