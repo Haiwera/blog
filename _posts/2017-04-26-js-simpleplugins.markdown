@@ -8,6 +8,8 @@ categories: js小插件
 
 在写页面的过程中，为了快速开发，我们经常会用到一些三方插件(诸如图片预览、文件上传等等)。用的时侯总是会抱怨插件太过臃肿，大部份功能完全用不上，为了解决这个问题写了几个小程序，分享一下 `jpreview`是一个图片预览的小程序，`jfileupload`多图上传小插件,`jtypeselect`快速选择小插件。[源码链接](https://github.com/Haiwera/simpleplugins.git)
 
+<!--break-->
+
 ## jpreview
 
 简单图片预览

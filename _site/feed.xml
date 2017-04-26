@@ -6,13 +6,15 @@
 </description>
     <link>http://haiwera.xyz/</link>
     <atom:link href="http://haiwera.xyz/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Apr 2017 16:16:51 +0800</pubDate>
-    <lastBuildDate>Wed, 26 Apr 2017 16:16:51 +0800</lastBuildDate>
+    <pubDate>Wed, 26 Apr 2017 17:30:34 +0800</pubDate>
+    <lastBuildDate>Wed, 26 Apr 2017 17:30:34 +0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
         <title>基于jquery写的一些小插件</title>
         <description>&lt;p&gt;在写页面的过程中，为了快速开发，我们经常会用到一些三方插件(诸如图片预览、文件上传等等)。用的时侯总是会抱怨插件太过臃肿，大部份功能完全用不上，为了解决这个问题写了几个小程序，分享一下 &lt;code class=&quot;highlighter-rouge&quot;&gt;jpreview&lt;/code&gt;是一个图片预览的小程序，&lt;code class=&quot;highlighter-rouge&quot;&gt;jfileupload&lt;/code&gt;多图上传小插件,&lt;code class=&quot;highlighter-rouge&quot;&gt;jtypeselect&lt;/code&gt;快速选择小插件。&lt;a href=&quot;https://github.com/Haiwera/simpleplugins.git&quot;&gt;源码链接&lt;/a&gt;&lt;/p&gt;
+
+&lt;!--break--&gt;
 
 &lt;h2 id=&quot;jpreview&quot;&gt;jpreview&lt;/h2&gt;
 
