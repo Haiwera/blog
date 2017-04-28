@@ -6,9 +6,178 @@
 </description>
     <link>http://haiwera.xyz/</link>
     <atom:link href="http://haiwera.xyz/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Apr 2017 17:30:34 +0800</pubDate>
-    <lastBuildDate>Wed, 26 Apr 2017 17:30:34 +0800</lastBuildDate>
+    <pubDate>Fri, 28 Apr 2017 13:52:00 +0800</pubDate>
+    <lastBuildDate>Fri, 28 Apr 2017 13:52:00 +0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>vim定制强大的php IDE</title>
+        <description>&lt;p&gt;不得不说，vim合理搭配各种插件后，的确是十分强悍，无论何种语言开发，用vim都能搭建出一个定制的IDE。自从&lt;a href=&quot;http://r9it.com&quot;&gt;阳老板&lt;/a&gt;那里撸到第一份vim配置，几经增补到现在，也算的上是比较顺手了。
+&lt;!--break--&gt;&lt;/p&gt;
+
+&lt;p&gt;真心想吐槽一下vdebug,第一个坑就是，这个插件要求vim支持python，我用的是apt装的vim8.0,用&lt;code&gt;vim --version | grep python&lt;/code&gt;是可以看到python支持的
+&lt;img src=&quot;/css/images/vim_python.png&quot; alt=&quot;vim_python支持&quot; /&gt;
+但是加入下面的代码在vdebug.vim中,然后再打开vim&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(!&lt;/span&gt;has&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;python&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)){&lt;/span&gt;
+	echo &lt;span class=&quot;s2&quot;&gt;&quot;can not support python&quot;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;finish&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;发现其实并不支持python,百般折腾，无奈之下只得自己编译安装&lt;a href=&quot;https://github.com/vim/vim&quot;&gt;vim&lt;/a&gt;,编译选项&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash &lt;/span&gt;
+./configure --with-features&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;huge &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--enable-rubyinterp &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--enable-pythoninterp &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--enable-python3interp &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--enable-luainterp &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--enable-perlinterp &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--enable-multibyte &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--enable-cscope &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--with-python-config-dir&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/lib/python2.7/config-x86_64-linux-gnu/  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--with-python-config-dir&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu/  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+--prefix&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/vim
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;使用编译安装vim遇到breakspace键删除字符无效的问题，那是因为在默认打开vim时使用的是vi兼容模式，解决这个问题只须在.vimrc中加入下面的配置以关首闭兼容模式，并添加breakspace全部的删除功能&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; nocompatible
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; backspace&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;indent&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;eol&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;start&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;插件管理工具&lt;/h2&gt;
+
+&lt;p&gt;Vundle是一款非常方便的插件管理工具，安装完成后只需要直接在.vimrc中添加插件的名称，然后在vim的命令模式输入:VundleInstall就可以直接安装了,以下是我安装的一些插件&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; rtp&lt;span class=&quot;p&quot;&gt;+=~&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/.vim/&lt;/span&gt;bundle/Vundle&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;vim&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; vundle#begin&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&quot; alternatively, pass a path where Vundle should install plugins&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&quot;call vundle#begin(&#39;~/some/path/here&#39;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&quot; let Vundle manage Vundle, required&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;gmarik/Vundle.vim&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;vim-airline/vim-airline&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;vim-airline/vim-airline-themes&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;vim-scripts/EasyGrep&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;scrooloose/nerdtree&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;majutsushi/tagbar&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;jreybert/vimagit&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;mhinz/vim-signify&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;joonty/vdebug&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;tpope/vim-fugitive&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;tpope/vim-commentary&#39;&lt;/span&gt;
+Plugin &lt;span class=&quot;s1&quot;&gt;&#39;junegunn/vim-easy-align&#39;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&quot; The following are examples of different formats supported.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&quot; Keep Plugin commands between vundle#begin/end.&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&quot; All of your Plugins must be added before the following line&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; vundle#&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;            &quot; required
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;快捷键&lt;/h2&gt;
+&lt;p&gt;玩vim当然是要高度定制，按自已的习惯设置快捷键当然就必不可少，这样能大大加快搬砖效率。下面是一些我定义的快捷键，大部分都是对窗口操作的&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap  &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F8&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;TagbarToggle&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+nmap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tabnew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+nmap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tabp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+nmap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;tabn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+nmap     &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;NERDTreeToggle&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+nmap     &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:!&lt;/span&gt;
+nmap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;C&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;F&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;Grep &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;ir 
+nmap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+nmap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+nmap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+nmap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;Breakpoint&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+nmap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;vs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+imap &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;M&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &quot;&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt;gp
+&lt;span class=&quot;c&quot;&gt;&quot; Start interactive EasyAlign in visual mode (e.g. vipga)&lt;/span&gt;
+xmap ga &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;Plug&lt;span class=&quot;p&quot;&gt;&amp;gt;(&lt;/span&gt;EasyAlign&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&quot; Start interactive EasyAlign for a motion/text object (e.g. gaip)&lt;/span&gt;
+nmap ga &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;Plug&lt;span class=&quot;p&quot;&gt;&amp;gt;(&lt;/span&gt;EasyAlign&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;php&quot;&gt;PHP&lt;/h2&gt;
+
+&lt;p&gt;当然既然是php的IDE ,那么当然得有一些特有的插件，像语法/规范检查，自动格式化代码phpcbf及phptags跳转定义等当然要单独来说&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;语法检查这种简单的插件可以自己写个简单的,就几行代码，写好命名为phpcheck.vim丢到.vim/plugin下就可以了&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+autocmd &lt;span class=&quot;nb&quot;&gt;BufWritePost&lt;/span&gt; *&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;php &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; PHPSyntaxCheck&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;exists&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;g:PHP_SYNTAX_CHECK_BIN&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:PHP_SYNTAX_CHECK_BIN&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;php&#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; PHPSyntaxCheck&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; result &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; system&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;g:PHP_SYNTAX_CHECK_BIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39; -l -n &#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;expand&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;stridx&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;result&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;No syntax errors detected&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        echohl WarningMsg &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; echo result &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; echohl None
+    &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;php代码格式化 &lt;code class=&quot;highlighter-rouge&quot;&gt;beanworks/vim-phpfmt.git&lt;/code&gt; 插件，它不仅有可以格式化代码，还能给出代码不规范的提示，安装非常简单，在plugin里把这个名称加进去就完了，配置也很简单。有个前提是要安装&lt;code class=&quot;highlighter-rouge&quot;&gt;phpcbf&lt;/code&gt;及 &lt;code class=&quot;highlighter-rouge&quot;&gt;phpcs&lt;/code&gt;可以直接用composer安装&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:syntastic_always_populate_loc_list&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:syntastic_auto_loc_list&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:syntastic_check_on_open&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:syntastic_check_on_wq&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&quot; 规范文件&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:phpfmt_standard&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/var/phpcs.xml&#39;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&quot; Or your own defined source of standard (absolute or relative path):&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&quot;let g:phpfmt_standard = &#39;/php/dar/dar-creator/phpcs.xml&#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:phpfmt_autosave&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:phpfmt_command&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/usr/local/bin/phpcbf&#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:phpfmt_tmp_dir&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;./&#39;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;vdebug调试参考&lt;a href=&quot;http://blog.csdn.net/guyue35/article/details/53968611&quot;&gt;vim+vdebug调试php&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;vim&quot;&gt;我的vim配置&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://121.40.217.151/vim/vimrc&quot;&gt;vimrc&lt;/a&gt;
+&lt;img src=&quot;/css/images/vim_effect.png&quot; alt=&quot;效果图&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 26 Apr 2017 15:50:35 +0800</pubDate>
+        <link>http://haiwera.xyz/%E5%B7%A5%E5%85%B7/2017/04/26/vim-config.html</link>
+        <guid isPermaLink="true">http://haiwera.xyz/%E5%B7%A5%E5%85%B7/2017/04/26/vim-config.html</guid>
+        
+        <category>vim,config,php</category>
+        
+        
+        <category>工具</category>
+        
+      </item>
     
       <item>
         <title>基于jquery写的一些小插件</title>
