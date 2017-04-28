@@ -1,10 +1,7 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
-@charset "utf-8";
-
-
-
+@charset "utf-8"; 
 // Our variables
 $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
@@ -51,3 +48,18 @@ $on-laptop:        800px;
         "layout",
         "syntax-highlighting"
 ;
+
+.main-content{
+	margin-left:300px;
+
+}
+.page-menu{
+	width:250px;
+	float:left;
+	border-right:1px solid #ccc;
+}
+.post-content img{
+	display:block;
+	margin:10px auto;
+}
+
