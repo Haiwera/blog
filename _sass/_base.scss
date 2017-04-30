@@ -192,11 +192,16 @@ pre {
 .main-content{
 	margin-left:300px;
 
+    @include media-query($on-laptop) {
+		margin-left:0px;
+	}
 }
 .page-menu{
 	width:250px;
 	float:left;
-	border-right:1px solid #ccc;
+    @include media-query($on-laptop) {
+		display:none;
+	}
 }
 .post-content img{
 	display:block;
