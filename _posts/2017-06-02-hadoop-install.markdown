@@ -29,7 +29,7 @@ sudo ln -s /usr/local/hadoop/bin/hadoop /usr/local/bin
 
 ## 简单的单机配置（Datanode和namenode)同时在localhost
 
-按如下配置更改后，运行 `./sbin/start-dfs.sh` 启动 hadoop
+按如下配置更改后，运行 `./sbin/start-dfs.sh` 启动 hadoop, 这个配置是将namenode进程和 datanode进程都配置在localhost,namenode和datanode通信时会通过ssh进行网络通信，故须确保本机开启了ssh服务。为方便通信，通常会配置ssh key登录，否则在启动hdfs时要输入密码，比较麻烦。
 
 * core-site.xml
 
@@ -65,7 +65,12 @@ sudo ln -s /usr/local/hadoop/bin/hadoop /usr/local/bin
 		 <value>file:/usr/local/hadoop/tmp/dfs/data</value>
 	</property>
 </configuration>
+~~~
 
+* 配置ssh
+
+~~~shell
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 ~~~
 
 ## 基本使用
