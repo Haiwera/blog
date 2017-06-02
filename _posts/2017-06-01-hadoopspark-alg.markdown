@@ -28,6 +28,29 @@ MapReduce 是Hadoop的大数据处理组件，它能将对大数据的计算分�
 
 映射器将输入数据映射为键值对，其中键、值可以是用户定义的任何数据类型，但要实现Hadoop的IWritable接口，以便存入hadoop文件系统。大量数据输入会被MapReduce自动分配给集群的各个结点。
 
+~~~shell
+
+1,23
+2,33
+3,33
+3,44
+5,666
+Map 
+
+<<2,23>,1>
+或
+<1,23>
+<2,33>
+<3,33>
+...
+
+reduce
+
+<1,[23]>
+<3,[33,44]>
+
+~~~
+
 #### reduce(归约器)
 
 相同的键的数据将被发送到同一个归约器，计算后可得到输出。这个输出可以作为另一个MapReduce作业的输入以迭代得到最终结果。
@@ -40,6 +63,17 @@ MapReduce 是Hadoop的大数据处理组件，它能将对大数据的计算分�
 
 用户可以自定义分区比较器对映射器生成的键进行比较，比较器判定为相同的数据将被分发至同一个归约器
 
+~~~php
+	
+class compare implement compare{
+	public function compare(K t1,K t2){
+		return 0;
+		return -1;
+		return 1;
+	}
+}
+~~~
+
 #### combine单节点合并
 
 为节省网络数据量，可使用combine对单结点产生的数据进行一个预处理
@@ -50,6 +84,8 @@ MapReduce 是Hadoop的大数据处理组件，它能将对大数据的计算分�
 ## Spark大数据处理
 
 Spark中对大数据的运算是基于RDD(分布式数据集合)的，所有的数据用RDD来描述，计算过程是从一个RDD经过转换函数到另一个RDD。包括以下种类
+
+* [Spark Api文档](http://spark.apache.org/docs/latest/api/java/index.html)
 
 ~~~java
 package org.apache.spark.api.java;
@@ -109,7 +145,7 @@ VoidFunction2
 import org.apache.spark.api.java.SparkContext;	
 import org.apache.spark.api.java.JavaRDD;
 
-JavaRDD<String> rdd = ctx.textFile("/home/yurnom/people.txt")
+JavaRDD<String> rdd = ctx.textFile("hdfs://home/yurnom/people.txt")
 //实现map功能
 JavaPairRDD<String,Integer> pairRDD = rdd.map(new PairFunction<String,String,Integer>{
 	Tuple2<String,Integer> call(String str){
@@ -134,3 +170,16 @@ Broadcast<Integer> b_t = new Broadcast<Integer>(123);//广播变量
 Integer i = b_t.value();
 ~~~
 
+## 执行spark任务
+
+~~~shell
+$SPARK_HOME/bin/spark-submit –class 应用程序的类名 \
+--master spark://master:7077 \
+--jars 依赖的库文件 \
+spark应用程序的jar包
+
+~~~
+
+## 相关链接
+
+* [Apache Spark - Spark的使用及源码走读](http://www.cnblogs.com/hseagle/category/569175.html)
