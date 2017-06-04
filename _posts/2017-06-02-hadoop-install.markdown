@@ -23,8 +23,6 @@ tar -xvf hadoop-2.7.3.tar.gz
 
 sudo mv hadoop-2.7.3 /usr/local/hadoop
 
-sudo ln -s /usr/local/hadoop/bin/hadoop /usr/local/bin
-
 ~~~
 
 ## 简单的单机配置（Datanode和namenode)同时在localhost
@@ -71,6 +69,18 @@ sudo ln -s /usr/local/hadoop/bin/hadoop /usr/local/bin
 
 ~~~shell
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+~~~
+
+* 格式化namenode
+
+按如上配置后,初次启动之前要格式化namenode否则namenode启动会失败
+
+~~~shell
+# 格式化namenode 
+/usr/local/hadoop/bin/hdfs namenode -format
+# 启动hdfs
+/usr/local/hadoop/sbin/start-dfs.sh
+
 ~~~
 
 ## 基本使用
