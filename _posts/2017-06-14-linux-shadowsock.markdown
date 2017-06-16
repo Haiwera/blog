@@ -3,7 +3,7 @@ layout: post
 title:  "Linux Shadowsock-qt5使用"
 date:   2017-06-09 21:10:35 +0800
 tags: protocol distribute
-categories: 读书总结
+categories: 工具
 ---
  如今分布式系统已经成为各互联网巨头的基石了，对于日益庞大的数据存储以及由它们带来的巨大的计算，都不是单机所能完成的任务。那么对于庞大的分布式系统，分布式协议就是协调集群中各节点工作的准则
 
