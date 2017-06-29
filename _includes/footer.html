@@ -41,3 +41,52 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="/css/js/raphael.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.6/flowchart.min.js"></script>
+<script language="javascript">
+$(function(){
+	$('code.language-flow').each(function(){
+		var code = $(this).text();
+		console.log(code.trim());
+		var diagram = flowchart.parse(code.trim());// the other symbols too...
+		$(this).empty();
+		diagram.drawSVG($(this)[0],{
+			'x': 0,
+			'y': 0,
+			'line-width': 2,
+			'line-length': 10,
+			'text-margin': 5,
+			'font-size': 14,
+			'font-color': 'black',
+			'line-color': 'black',
+			'element-color': 'black',
+			'fill': 'white',
+			'yes-text': '是',
+			'no-text': '否',
+			'arrow-end': 'block',
+			'scale': 1,
+			// style symbol types
+			'symbols': {
+			'start': {
+			'font-color': 'red',
+			'element-color': 'green',
+			},
+			'end':{
+				'class': 'end-element'
+			}
+			},
+			// even flowstate support ;-)
+			'flowstate' : {
+				'past' : { 'fill' : '#CCCCCC', 'font-size' : 12},
+				'current' : { 'font-color' : 'red', 'font-weight' : 'bold'},
+				'future' : { 'fill' : '#FFFF99'},
+				'request' : { 'fill' : 'blue'},
+				'invalid': {'fill' : '#444444'},
+				'approved' : { 'fill' : '#58C4A3', 'font-size' : 12, 'yes-text' : 'APPROVED', 'no-text' : 'n/a' },
+				'rejected' : { 'fill' : '#C45879', 'font-size' : 12, 'yes-text' : 'n/a', 'no-text' : 'REJECTED' }
+			}		
+		});
+	});
+});
+	
+</script>

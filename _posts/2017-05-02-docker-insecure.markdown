@@ -60,3 +60,13 @@ sudo service docker restart
 ~~~shell
 docker start docker-repo
 ~~~
+* Dockerfile中的`CMD`和`ENTRYPOINT`区别
+
+~~~shell
+CMD["sh run.sh"]
+# 在run创建容器时run 后面有命令参数会覆盖。 如run ls容器将执行ls
+ENTRYPOINT["sh"]
+# 在run创建容器时会将run后面的命令作为参数 。如run a.sh容器将执行sh a.sh
+# 没有run参数时CMD和ENTRYPOINT没有区别
+
+~~~
