@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "jsword历史年表"
+date:   2017-06-09 21:10:35 +0800
+tags: protocol distribute
+categories: js小插件
+---
+
+通过json数据，将各年号组织在时间轴上，从而使年份对照更加清晰。目前仅收集部分朝代年号。
+
+<!--break-->
+
+
+#
+#正在准备数据，稍侯将展示年表...
+
+	
+<script src="/css/js/time/util.js"></script>
+<script src="/css/js/jsword/nian.js"></script>
+<script src="/css/js/jsword/jsword.js"></script>
+<script language="javascript">
+		var elem = document.getElementsByClassName('page-content')[0];
+		var div = document.createElement('div');
+		div.id = 'jsword';
+		document.getElementsByTagName('body')[0].appendChild(div);
+		elem.style.height = "800px";
+		var sword = new JSword({
+				'id' : 'jsword',
+
+		}).start();
+		elem.innerHTML = "";
+</script>
+
+## 事件处理
+
+####
