@@ -25,6 +25,7 @@ categories: js小插件
 		elem.style.height = "800px";
 		var sword = new JSword({
 				'id' : 'jsword',
+				'width' : document.body.clientHeight
 
 		}).start();
 		elem.innerHTML = "";

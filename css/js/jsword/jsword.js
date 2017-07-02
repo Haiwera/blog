@@ -455,7 +455,7 @@ JSwordNode.prototype = {
 			this.domPoint.style.top = pt.y +  'px';
 			this.domLine.style.left = lineLeft + 20 + 'px';
 			this.domLine.style.top = pt.y + 'px';
-			this.domLine.style.width = context.windowWidth - lineLeft  + 'px';
+			this.domLine.style.width = context.windowWidth - (lineLeft * 2)  + 'px';
 			this.domLine.innerHTML = this.dataProvider.toString();
 			this.domPoint.title = this.dataProvider.time.toString();
 		}
@@ -795,8 +795,8 @@ var JSword = function(config){
 		console.log(e);
 	});
 	this.element.addEventListener('touchmove',function(e){
+		e.preventDefault();
 		if(lastMoveY){
-			e.preventDefault();
 			e = e.changedTouches[0];
 			e.deltaY = - (e.clientY - lastMoveY);
 			self.onWheel(e);
@@ -813,7 +813,13 @@ var JSword = function(config){
 		self.onWheel(e);
 		e.preventDefault();
 	});
-	this.width = this.options.dir ?  this.element.clientHeight : this.element.clientWidth;
+	if(!this.options.width){
+		this.width = this.options.dir ?  this.element.clientHeight : this.element.clientWidth;
+	}
+	else{
+		this.width = this.options.width;
+		this.element.style.height = this.width + "px";
+	}
 
 	return this;
 
