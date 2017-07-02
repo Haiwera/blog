@@ -206,6 +206,9 @@ JSwordTimer.prototype = {
 		return this.time.t;
 	},
 	getEndValue : function(){
+		if(this.endValue !== undefined){
+			return this.endValue;
+		}
 		var next = new history.time(this.time.t);
 		switch(this.level){
 			case 0:next = next.npn(1000);break;
@@ -217,9 +220,8 @@ JSwordTimer.prototype = {
 			case 5:next = next.npr();break;
 			case 6:next = next.nps();break;
 		}
-		if(this.level == 2){
-		}
-		return next.t - 1;
+		this.endValue = next.t - 1;
+		return this.endValue;
 	
 	},
 	getChildrenCount : function(){
@@ -437,7 +439,9 @@ JSwordNode.prototype = {
 		}
 	},
 	draw : function(context){
+		context.drawcount ++;
 		if(context.canDisplay(this.left)){
+			context.rendercount ++;
 			var pt = context.getPoint(this.left);
 			if(!this.domPoint || !this.domLine){
 				this.domPoint = document.createElement('div');
@@ -558,7 +562,7 @@ var JSwordBehavior = {
 	},
 	execute:function(sword,time){
 		if(!this.timer.isRunning()) return;
-		if(!this.timer.isOver()){
+		if(!this.timer.isOver() && sword.allowAnimation === true){
 			var animationElapsed = this.timer.getElapsedTime(),elapsed;
 			if(this.lastTime !== undefined){
 				elapsed = animationElapsed - this.lastTime;
@@ -570,6 +574,7 @@ var JSwordBehavior = {
 			var node = sword.headNode;
 			var eventNodeList = [];
 			sword.left = sword.toLeft;
+			sword.allowAnimation = true;
 			
 			while(node){
 				node.left = node.toLeft;
@@ -721,6 +726,9 @@ var JSword = function(config){
 	this.toLeft = this.left;
 	this.velocity = 0;
 	this.channels = [];
+	this.drawcount = 0;
+	this.rendercount = 0;
+	this.allowAnimation = true;
 
 	this.options = options.__jsword_load(config);
 	this.createNodes = function(){
@@ -792,7 +800,6 @@ var JSword = function(config){
 	this.element.addEventListener('touchstart',function(e){
 		e = e.changedTouches[0];
 		lastMoveY = e.clientY;
-		console.log(e);
 	});
 	this.element.addEventListener('touchmove',function(e){
 		e.preventDefault();
@@ -803,7 +810,6 @@ var JSword = function(config){
 			lastMoveY = e.clientY;
 		
 		}
-		console.log(e);
 	
 	});
 	this.element.addEventListener('touchend',function(e){
@@ -952,14 +958,14 @@ JSword.prototype = {
 	},
 	init: function(){
 		if(!this.options.swordTimer){
-			this.options.swordTimer = new JSwordTimer(history.time.now(),6);	
+			this.options.swordTimer = new JSwordTimer(new history.time({n:-841,y:1,r:1,s:1}),3);	
 		}
 		this.currentNode = this.findNodeBySwordTimer(this.options.swordTimer);
 		if(this.currentNode){
-			// this.left  = this.currentNode.left;
-			// this.toLeft = this.currentNode.left; 
+			this.left  = this.currentNode.toLeft;
+			this.toLeft = this.left; 
 		}
-
+		this.allowAnimation = false;
 		JSwordBehavior.start(this);
 				
 	}
