@@ -450,10 +450,12 @@ JSwordNode.prototype = {
 			if(this.nodeStatus == JSwordNode.DENY_SHRINK){
 				this.domPoint.style.background = '#ccc'; 
 			}
+			var lineLeft = (pt.x + this.domPoint.clientWidth) / 2;
 			this.domPoint.style.left = pt.x + 'px';
 			this.domPoint.style.top = pt.y +  'px';
-			this.domLine.style.left = (pt.x + this.domPoint.clientWidth) / 2 + 20 + 'px';
+			this.domLine.style.left = lineLeft + 20 + 'px';
 			this.domLine.style.top = pt.y + 'px';
+			this.domLine.style.width = context.windowWidth - lineLeft  + 'px';
 			this.domLine.innerHTML = this.dataProvider.toString();
 			this.domPoint.title = this.dataProvider.time.toString();
 		}
@@ -709,6 +711,8 @@ var JSword = function(config){
 		canScroll:          0,// 是否允许滚动
 	};
 	this.element = null;
+	this.windowWidth = document.body.clientWidth;
+	this.windowHeight = document.body.clientHeight;
 	this.rootNodes = [];
 	this.currentNode = null;
 	this.behaviors = [];
@@ -744,14 +748,14 @@ var JSword = function(config){
 	}
 	this.createChannels = function(n){
 		for(var i = 0;i < n;i ++){
-			var channel = new JSwordChannel(i,100);
-			channel.left = (i + 1) * 100;
+			var channel = new JSwordChannel(i,this.windowWidth / (n + 1));
+			channel.left = (i + 1) * (this.windowWidth / (n + 1));
 			this.channels.push (channel);
 		}	
 	}
 
 	this.createNodes();
-	this.createChannels(16);
+	this.createChannels(10);
 
 	for(var i = 0;i < g_nian.length; i++){
 		
@@ -784,14 +788,26 @@ var JSword = function(config){
 			p = p.globalNext;
 		}
 	});
-	this.element.addEventListener('mouseover',function(e){
-		var p = self.headNode;
-		while(p){
-			var area = p.getArea(self);
-			if(e.pageX >= area.left && e.pageX <= area.right && e.pageY >= area.top && e.pageY <= area.bottom){
-			}
-			p = p.globalNext;
+	var lastMoveY = 0;
+	this.element.addEventListener('touchstart',function(e){
+		e = e.changedTouches[0];
+		lastMoveY = e.clientY;
+		console.log(e);
+	});
+	this.element.addEventListener('touchmove',function(e){
+		if(lastMoveY){
+			e.preventDefault();
+			e = e.changedTouches[0];
+			e.deltaY = - (e.clientY - lastMoveY);
+			self.onWheel(e);
+			lastMoveY = e.clientY;
+		
 		}
+		console.log(e);
+	
+	});
+	this.element.addEventListener('touchend',function(e){
+		lastMoveY = 0;
 	});
 	this.element.addEventListener('wheel',function(e){
 		self.onWheel(e);

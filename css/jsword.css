@@ -65,6 +65,7 @@
 #jsword .JSword_range{
 	position : absolute;
 	text-align:center;
+	font-size:10px;
 	border:1px solid #fff;
 	background:rgba(255,0,255,0.5);
 }
