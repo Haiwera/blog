@@ -1,0 +1,95 @@
+#jsword {
+	position:absolute;height:600px; width:40px;
+	left:0;top:56px;
+}
+#jsword .JSword_point{
+	position:absolute; width:16px; height:16px; border: 1px solid #ccc;;border-radius:8px;background:#000;
+	cursor:pointer;
+	color:#fff;font-size:14px;line-height:16px;text-align:center;
+}
+#jsword .JSword_0_point{
+	background:#00f;
+}
+#jsword .JSword_1_point{
+	background:#6f6;
+	height:10px;
+}
+#jsword .JSword_2_point{
+	background:#f66;
+	height:8px;
+}
+#jsword .JSword_3_point{
+	background:#66f;
+	height:6px;
+}
+#jsword .JSword_4_point{
+	background:#9f9;
+	height:4px;
+}
+#jsword .JSword_5_point{
+	background:#f99;
+	height:2px;
+}
+#jsword .JSword_6_point{
+	background:#99f;
+	height:1px;
+}
+#jsword .JSword_point:hover{
+	background:red;
+}
+#jsword .JSword_line{
+	position:absolute;
+	text-align:right;
+	width:1200px;
+	height:14px;
+	color:rgba(0,0,0,0);
+	line-height:14px;
+	font-size:12px;
+	border-bottom:1px solid rgba(0,0,0,0.1);
+}
+#jsword .JSword_line:hover{
+
+}
+#jsword .JSword_sel_point{
+	border-color:#000;
+	color:#000;
+}
+#jsword #jsword-cursor{
+	position:absolute;
+	width:20px;
+	left:10px;
+	height:16px;
+	border:5px solid #000;
+	border-left:0px;
+}
+#jsword .JSword_range{
+	position : absolute;
+	text-align:center;
+	font-size:10px;
+	border:1px solid #fff;
+	background:rgba(255,0,255,0.5);
+}
+#jsword .JSword_0_channel{
+	background:rgba(255,0,255,0.5);
+}
+#jsword .JSword_1_channel{
+	background:rgba(255,255,0,0.5);
+}
+#jsword .JSword_2_channel{
+	background:rgba(0,255,255,0.5);
+}
+#jsword .JSword_3_channel{
+	background:rgba(255,125,125,0.5);
+}
+#jsword .JSword_4_channel{
+	background:rgba(125,255,125,0.5);
+}
+#jsword .JSword_5_channel{
+	background:rgba(125,125,255,0.5);
+}
+#jsword .JSword_6_channel{
+	background:rgba(75,175,255,0.5);
+}
+#jsword .JSword_7_channel{
+	background:rgba(255,75,175,0.5);
+}
