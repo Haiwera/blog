@@ -13,6 +13,7 @@ JQuery dom容器内自适应居中，可以是以短边为准缩放缺的地方�
 ~~~js 
 define(function(require,exports,module){
 	require('jquery');
+	//挤压填充
 	var adjustImg = function(img,container){
 		var w = $(img).closest(container).width() || $(img).width();
 		var h = $(img).closest(container).height() || $(img).height();
@@ -52,6 +53,52 @@ define(function(require,exports,module){
 
 		}
 	}
+	//拉伸填充
+	var adjustImg = function(img){
+
+		var w = $(img).closest('.media-img').width() || $(img).width();
+		var h = $(img).closest('.media-img').height() || $(img).height();
+
+		var oW = $(img).width();
+		var oH = $(img).height();
+		if(!oW || !oH)
+		{
+			return ;
+		}
+
+		var pre = $(img).closest('.media-img');
+
+		var l = 0;
+		var t = 0;
+		var sW = w;
+		var sH = h;
+		if(pre.length){
+			pre.css({
+				"position" : "relative"
+			});
+			if(w / h < oW / oH){
+				sH = h;
+				sW = h / oH * oW;
+				l = (w - sW) / 2;
+				t = 0;
+			}
+			else{
+				sW = w;
+				sH = w / oW * oH;
+				l = 0;
+				t = (h - sH) / 2;
+			}
+			$(img).css({
+				"position" : "absolute"
+				,"width" : sW + "px"
+				,"height" : sH + "px"
+				,"left" : l + "px"
+				,"top" : t + "px"
+			});
+
+		}
+	};
+
 	$(function(){
 		$('img').each(function(){
 			$(this).load(function(){
