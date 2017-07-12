@@ -32,16 +32,35 @@ define(function(require,exports,module){
 			var sW = w;
 			var sH = h;
 			if(w / h > oW / oH){
+				//挤压填充
 				sH = h;
 				sW = h / oH * oW;
 				l = (w - sW) / 2;
 				t = 0;
+
+
+				//拉伸填充
+				/**
+				sW = w;
+				sH = w / oW * oH;
+				l = 0;
+				t = (h - sH) / 2;
+				*/
 			}
 			else{
+				//挤压填充
 				sW = w;
 				sH = w / oW * oH;
 				l = 0;
 				t =( h - sH) / 2;
+
+				//拉伸填充
+				/**
+				sH = h;
+				sW = h / oH * oW;
+				l = (w - sW) / 2;
+				t = 0;
+				*/
 			}
 			$(img).css({
 				"position" : "absolute"
@@ -53,51 +72,6 @@ define(function(require,exports,module){
 
 		}
 	}
-	//拉伸填充
-	var adjustImg = function(img){
-
-		var w = $(img).closest('.media-img').width() || $(img).width();
-		var h = $(img).closest('.media-img').height() || $(img).height();
-
-		var oW = $(img).width();
-		var oH = $(img).height();
-		if(!oW || !oH)
-		{
-			return ;
-		}
-
-		var pre = $(img).closest('.media-img');
-
-		var l = 0;
-		var t = 0;
-		var sW = w;
-		var sH = h;
-		if(pre.length){
-			pre.css({
-				"position" : "relative"
-			});
-			if(w / h < oW / oH){
-				sH = h;
-				sW = h / oH * oW;
-				l = (w - sW) / 2;
-				t = 0;
-			}
-			else{
-				sW = w;
-				sH = w / oW * oH;
-				l = 0;
-				t = (h - sH) / 2;
-			}
-			$(img).css({
-				"position" : "absolute"
-				,"width" : sW + "px"
-				,"height" : sH + "px"
-				,"left" : l + "px"
-				,"top" : t + "px"
-			});
-
-		}
-	};
 
 	$(function(){
 		$('img').each(function(){
