@@ -93,3 +93,12 @@
 #jsword .JSword_7_channel{
 	background:rgba(255,75,175,0.5);
 }
+#jsword .JSword_8_channel{
+	background:rgba(75,75,255,0.5);
+}
+#jsword .JSword_9_channel{
+	background:rgba(75,255,75,0.5);
+}
+#jsword .JSword_10_channel{
+	background:rgba(255,75,75,0.5);
+}

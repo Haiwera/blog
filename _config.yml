@@ -18,6 +18,9 @@ rourl: http://121.40.217.151/
 # Build settings
 markdown: kramdown
 highlighter: rouge
+permalink: /:title.html
 
 kramdown:
       syntax_highlighter: rouge
+gems:
+    - jekyll-sitemap

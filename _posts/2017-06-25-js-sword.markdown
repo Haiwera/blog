@@ -27,10 +27,25 @@ categories: js小插件
 				'id' : 'jsword',
 				'width' : document.body.clientHeight
 
-		}).start();
+		});
+		sword.start();
 		elem.innerHTML = "";
+		var updateFunc = function(){
+
+			var hash = window.location.hash.replace(/^[^#]*#?(.*)$/, '$1' );
+			hash = parseInt(hash);
+			if(hash > -10000 && hash < 10000){
+				sword.currentNode = sword.findNodeBySwordTimer(new JSwordTimer(new history.time({n:hash,y:1,r:1,s:1}),3));
+				sword.toLeft = sword.currentNode.toLeft;
+				
+				JSwordBehavior.start(sword);
+
+			}
+			
+		}
+		window.addEventListener('hashchange', function(){
+			updateFunc();
+		});
+		updateFunc();
 </script>
 
-## 事件处理
-
-####
