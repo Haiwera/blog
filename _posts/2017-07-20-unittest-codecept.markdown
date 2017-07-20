@@ -16,20 +16,20 @@ PHPUnit是php单元测试的一个框架，Codeception是基于phpunit写的一�
 - codecept提供了一套快速构建测试代码的命令，我们可以使用`./vendor/bin/codecept bootstrap`来快速生成测试代码的目录结构。如下：
 
 ~~~shell
-
+codeception.yml #全局配置
 tests/
-├── acceptance
+├── acceptance #验收测试
 │   └── _bootstrap.php
-├── acceptance.suite.yml
+├── acceptance.suite.yml #验收测试配置
 ├── _bootstrap.php
-├── _data
-│   └── dump.sql
+├── _data #测试文件
+│   └── dump.sql #基境数据，保证测试运行前数据是已知的，对涉及数据库测试是至关重要的
 ├── _envs
-├── functional
+├── functional #功能测试 
 │   └── _bootstrap.php
-├── functional.suite.yml
-├── _output
-├── _support
+├── functional.suite.yml #功能测试配置文件
+├── _output # 测试结果、报告输出，测试产生的数据也可以输出到这
+├── _support # 生成的文件，可以不用管
 │   ├── AcceptanceTester.php
 │   ├── FunctionalTester.php
 │   ├── _generated
@@ -41,9 +41,9 @@ tests/
 │   │   ├── Functional.php
 │   │   └── Unit.php
 │   └── UnitTester.php
-├── unit
+├── unit # 单元测试
 │   └── _bootstrap.php
-└── unit.suite.yml
+└── unit.suite.yml # 单元测试配置
 
 
 ~~~
@@ -77,6 +77,7 @@ $config = yii\helpers\ArrayHelper::merge(
 );
 
 $application = new yii\console\Application($config);
+//这里只要引入项目需要的文件，不需要真正执行项目，最后不要用输出。
 $exitCode = $application->init();
 ~~~
 
@@ -107,7 +108,7 @@ modules:
 class_name: AcceptanceTester
 modules:
     enabled:
-        - WebDriver:
+        - WebDriver: # 默认请求localhost:4444做为webdriver的侦听端口。
               url: http://cloud.darcreator.dev
               browser: firefox
         - \Helper\Acceptance
@@ -126,3 +127,8 @@ modules:
 ### 执行测试
 
 单个单元测试执行`./vendor/bin/codecept run unit modules/admin/controllers/BaseControllerTest`,也可以不指定文件名表示执行所有的单元测试。
+
+### 注意
+
+- 测试不应当是一成不变的，在发现新的问题时，需要及时补充测试代码。
+
