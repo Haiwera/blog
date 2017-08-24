@@ -5,13 +5,13 @@ date:   2017-08-01 21:10:35 +0800
 tags: linux perf
 categories: 读书总结
 ---
-系统性能
+系统性能指标及工具有很多，这篇文章从《性能之颠》这本书中总结了一结点罗列如下，以备忘。
 
 <!--break-->
 
 ## 操作系统
 
-### 内核管理系统资源，负责CPU调度及设备管理。应用程序通过系统调用操作内核。
+* 内核管理系统资源，负责CPU调度及设备管理。应用程序通过系统调用操作内核。
 * 内核按需执形，轻量级，占cpu少。I/O型负载会频繁在内核中执行。计算型则很少打扰内核。
 * 内核会选择本地性更好的cpu供进程使用。
 * 现代型cpu时钟中断要做的事情很少
@@ -46,46 +46,46 @@ categories: 读书总结
 
 * dtrace探针 `provider:module:function:name`
 
-|provider|描述|
-|--|--|
-| syscall | 系统调用自陷表 |
-| vminfo  |虚拟内存信息|
-| sysinfo |系统统计信息|
-|profile|任意频率采样|
-|sched|内核调度事件|
-|proc|进程级别事件，创建，执行，退出|
-|io|地设备接口跟踪|
-|pid|用户级别动态跟踪|
-|tcp|tcp事件|
-|ip|ＩＰ事件|
-|fbt|内核级别动态跟踪|
+| provider | 描述                           |
+| --       | --                             |
+| syscall  | 系统调用自陷表                 |
+| vminfo   | 虚拟内存信息                   |
+| sysinfo  | 系统统计信息                   |
+| profile  | 任意频率采样                   |
+| sched    | 内核调度事件                   |
+| proc     | 进程级别事件，创建，执行，退出 |
+| io       | 地设备接口跟踪                 |
+| pid      | 用户级别动态跟踪               |
+| tcp      | tcp事件                        |
+| ip       | ＩＰ事件                       |
+| fbt      | 内核级别动态跟踪               |
 
 * systemtap探针`syscall.read.return`
 
-|tapset|描述|
-|--|--|
-| syscall | 系统调用自陷表 |
-| memory  |虚拟内存信息|
-| scsi |SCSI目标事件|
-|scheduler|内核调度事件|
-|ioblock|地设备接口跟踪|
-|tcp|tcp事件|
-|socket|socket事件|
-|networking|网络事件|
+| tapset     | 描述           |
+| --         | --             |
+| syscall    | 系统调用自陷表 |
+| memory     | 虚拟内存信息   |
+| scsi       | SCSI目标事件   |
+| scheduler  | 内核调度事件   |
+| ioblock    | 地设备接口跟踪 |
+| tcp        | tcp事件        |
+| socket     | socket事件     |
+| networking | 网络事件       |
 
 * 语法
-~~~D
+
+~~~shell
+	# DTrace
 	probe_description /predicate/ {action}
-~~~
-~~~
-stap -e 'global stat; probe syscall.read.return { stat <<< $return; } probe end { print(@hist_log(stats))}'
+	# SystemTap
+	global stat; probe syscall.read.return { stat <<< $return; } probe end { print(@hist_log(stats))
 ~~~
 
 * 内置变量&action
 
-
-
-
+- [DTrace](http://docs.oracle.com/cd/E24847_01/html/E22192/gcfqr.html#gcgke)
+- [SystemTap](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html-single/SystemTap_Beginners_Guide/#systemtapscript-functions)
 
 
 ## 应用程性能分析方法
