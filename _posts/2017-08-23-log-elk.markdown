@@ -1,0 +1,117 @@
+---
+layout: post
+title:  "ELK基础使用"
+date:   2017-09-13 11:12:01 +0800
+tags: docker jenkins php
+categories: 工具
+---
+logstash 是一款很好的日志流处理工具。elasticsearch负责日志存储和索引工具。Kibana是一款Web可视化统计工具。可以对elasticsearch数据进行可视化。
+
+<!--break-->
+
+## 经典架构
+
+* 单机简单架构
+
+~~~flow
+C=>start: 日志/ogstash
+D=>operation: Elasticsearch
+E=>operation: Kibana
+F=>end: USER
+
+C(right)->D(right)->E(right)->F
+
+~~~
+
+* 分布式常用架构
+
+~~~flow
+A=>start: start
+X=>start: 多日志/FileBeat
+B=>operation: Redis
+C=>operation: Logstash
+D=>operation: Elasticsearch
+E=>operation: Kibana
+F=>end: USER
+
+X(right)->B(right)->C(right)->D(right)->E(right)->F
+
+~~~
+
+## FileBeat 
+
+filebeat 能够将指定文件内容重定向到网络接口，对外发送。虽然logstash也能完成这个功能，但logstash 依赖jvm运行环境，比较重,filebeat 可以看作是一个轻量级的logstash
+
+* 其配置如下
+
+~~~yml
+filebeat: 
+	prospectors:
+		-
+			paths:
+				- /www/wwwLog/www.lanmps.com_old/*.log
+				- /www/wwwLog/www.lanmps.com/*.log
+					input_type: log 
+					document_type: nginx-access-www.lanmps.com
+		-
+		    paths:
+			    - /www/wwwRUNTIME/www.lanmps.com/order/*.log
+				  input_type: log 
+				  document_type: order-www.lanmps.com
+		-
+			paths:
+				- /www/wwwRUNTIME/www.lanmps.com/pay/*.log
+				  input_type: log 
+				  document_type: pay-www.lanmps.com
+output:
+#   elasticsearch:
+#       hosts: ["localhost:9200"]
+	logstash:
+		hosts: ["10.1.5.65:5044"]
+
+~~~
+
+* 参考[Filebeat 日志收集器 安装和配置](http://blog.csdn.net/fenglailea/article/details/52469671)
+
+## Logstash
+
+logstash 类似管道，除了拥有filebeat的功能外，还支持在中间加各种过滤器，对输入数据加工后再输出。
+
+~~~shell
+# 最基本的配置文件定义，必须包含input 和 output。
+input{
+    stdin{ }
+	     
+	file{
+		path => ["/var/log/message"]
+		type => "system"
+		start_position => "beginning"
+	}
+}
+
+# 如果需要对数据进操作，则需要加上filter段
+filter{
+    # 里面可以包含各种数据处理的插件，如文本格式处理 grok、键值定义 kv、字段添加、
+    # geoip 获取地理位置信息等等... 
+}
+
+output{
+	stdout{
+		codec=>rubydebug
+	}
+    # 可以定义多个输入源与多个输出位置
+
+	file {
+		path => "/var/datalog/mysystem.log.gz"
+		gzip => true
+	}
+
+}
+~~~
+* 参考[Logstash 讲解与实战应用](http://tchuairen.blog.51cto.com/3848118/1840596/)
+
+## Elasticsearch
+
+在章节的开始我们提到Elasticsearch可以扩展到上百（甚至上千）的服务器来处理PB级的数据。然而我们的教程只是给出了一些使用Elasticsearch的例子，并未涉及相关机制。Elasticsearch为分布式而生，而且它的设计隐藏了分布式本身的复杂性。
+
+* 参考[Elasticsearch 权威指南（中文版）](https://es.xiaoleilu.com/index.html)
