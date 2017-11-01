@@ -6,6 +6,10 @@ tags: http php
 categories: 其它
 ---
 
+关于OpenGL与Unity3d的一些问题，Unity3d如何对底层绘图api进行操作。
+
+<!--break-->
+
 # opengl各个缓冲区(颜色缓冲区、深度缓冲区、模板缓冲区)
 深度缓冲区对unity3d可见吗？
 什么是模板缓冲区？
