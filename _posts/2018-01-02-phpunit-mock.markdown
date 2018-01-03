@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "项目中集成单元测试中的一些总结"
+title:  "项目中集成单元测试总结"
 date:   2018-01-02 21:12:01 +0800
 tags: http php
 categories: 其它
