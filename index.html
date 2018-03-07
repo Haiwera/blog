@@ -167,9 +167,8 @@ $("#cont").css("transform","rotateY(30deg)");
 				</div>
 
 				<ul class="post-list">
-					{% for post in site.posts %}
+					{% for post in paginator.posts %}
 					<li>
-
 					<h2>
 						<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 					</h2>
@@ -178,8 +177,25 @@ $("#cont").css("transform","rotateY(30deg)");
 					</li>
 					{% endfor %}
 				</ul>
+				<ul style="text-align:right">
+				{% if paginator.previous_page %}
+					<a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}"上一页</a>
+				{% endif %}
+				{% for page in (1..paginator.total_pages) %}
+					{% if page == paginator.page %}
+					  <span class="active">{{ page }}</span>
+					{% elsif page == 1 %}
+					  <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+					{% else %}
+					  <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+					{% endif %}
+				{% endfor %}
+				{% if paginator.next_page %}
+					<a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页</a>
+				{% endif %}
+				</ul>
 
-				<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+				<!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
 				<audio src="http://haiwera.oss-cn-shanghai.aliyuncs.com/assets/mp3/qingpingdiao.mp3" controls=true></audio>
 
 			</div>
