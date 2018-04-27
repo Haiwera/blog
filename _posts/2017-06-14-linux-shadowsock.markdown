@@ -49,7 +49,45 @@ cd .. && rm -rf proxychains-ng
 ~~~shell
 socks5  127.0.0.1 1080  //1080改为你自己的端口
 ~~~
+#### 在用服器上使用代理
 
+~~~shell
+# 安装shadowsocks
+sudo apt-get update
+sudo apt-get install python-pip
+sudo apt-get install python-setuptools m2crypto
+sudo pip install shadowsocks
+
+#开启本地监听
+sslocal -s 11.22.33.44 -p 50003 -k "123456" -l 1080 -t 600 -m aes-256-cfb
+~~~
+
+- 也可以使用配置文件
+
+~~~json
+// /etc/sslocl.json
+{
+    "server":"11.22.33.44",
+    "server_port":50003,
+    "local_port":1080,
+    "password":"123456",
+    "timeout":600,
+    "method":"aes-256-cfb"
+}
+~~~
+
+~~~shell
+sslocal -c /etc/sslocl.json
+~~~
+
+#### 在git中使用代理
+
+- 当开启shadowsocks时，默认会启动主机1080端口为代理端口。在git中有配置项，修改后git的网络请求新会经过代理
+
+~~~shell
+git config --global http.proxy socks5://127.0.0.1:1080
+git config --global https.proxy socks5://127.0.0.1:1080
+~~~
 
 #### 使用方法
 
