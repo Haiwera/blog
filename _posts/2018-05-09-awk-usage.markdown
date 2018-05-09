@@ -1,0 +1,69 @@
+---
+layout: post
+title:  "awk使用方法"
+date:   2018-05-09 17:12:01 +0800
+tags: shell awk
+categories: 工具
+---
+
+awk是一款非常强大的shell文本处理工具，在shell中配和`grep` `sort` `sed`和管道操作符能快速完成想要的文本处理任务。
+
+<!--break-->
+
+### 语句块
+
+- awk 用大括号表示语句块，一个awk命令可以跟多个语句块。可以在语句快前回修饰符`BEGIN`和`END`,分别表示在行遍历前和行遍历后执行
+
+~~~shell
+    awk -F, '{...}{...}{...}'
+
+    awk -F, 'BEGIN{}{}END{}'
+~~~
+
+### 变量
+
+- 列变量
+    - awk F参数将行拆分成列`$1` `$2` ...
+- 字符串
+    - awk 字串用空格拼接
+    - 也可以直接用一个常量字串拼接两个变量
+- 运算
+    - 支持四则运算 
+
+~~~shell
+    awk -F, 'END{a=1;b="";c=$3}'
+    ##字串拼接a和b
+    awk -F, '{a="str1";b=1;c=a b}'
+    ##c = "str11"
+    ##字串拼接a和b
+    awk -F, '{a="str1";b=1;c=a"----"b}'
+    ##c = "str1----1"
+~~~
+
+### 条件语句
+
+支持条件运算`&&`,`||`,`!=`...
+
+~~~shell
+    awk -F, 'if(a==$1){...}else{...}'
+    awk -F, '{if(a==$1){if(b==c){...};c="111"}else{...}'
+    awk -F, '{if(a==$1 && b==3){if(b==c){...};c="111"}else{...}'
+~~~
+
+### 方法
+    
+方法好像只能放到语句块里面调用，可以是以下两种形式
+
+~~~shell
+    awk -F, '{print $1}'
+    awk -F, '{print($1)}'
+~~~
+
+### 例子
+
+- 将一个csv文件进行聚合,第一个字段相同的把第三个字段用`|`拼接到同一行
+~~~shell
+
+cat test.csv | sort | uniq | awk -F, 'BEGIN{a="";b="";c="";}{if(a==$1){if(c!="\r"){c=c"|"$3}else{c=$3}}else{print a",\"part_type="b",part_position="c"\"";a=$1;b=$2;c=$3}}END{print a","b","c;}'
+
+~~~
