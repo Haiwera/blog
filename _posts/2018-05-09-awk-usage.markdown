@@ -62,6 +62,7 @@ awk是一款非常强大的shell文本处理工具，在shell中配和`grep` `so
 ### 例子
 
 - 将一个csv文件进行聚合,第一个字段相同的把第三个字段用`|`拼接到同一行
+
 ~~~shell
 
 cat test.csv | sort | uniq | awk -F, 'BEGIN{a="";b="";c="";}{if(a==$1){if(c!="\r"){c=c"|"$3}else{c=$3}}else{print a",\"part_type="b",part_position="c"\"";a=$1;b=$2;c=$3}}END{print a","b","c;}'
