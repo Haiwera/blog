@@ -2,7 +2,7 @@
 layout: post
 title:  "Docker 搭建内网镜像仓库"
 date:   2017-05-02 12:50:35 +0800
-tags: docker,tools
+tags: docker tools
 categories: 工具
 ---
 

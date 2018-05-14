@@ -2,7 +2,7 @@
 layout: post
 title:  "web自动化测试-selenium"
 date:   2017-06-09 21:10:35 +0800
-tags: selenium
+tags: selenium autotest
 categories: 工具
 ---
 [selenium](https://goo.gl/s4o9Vx)是web自动化的流行工具，它能以一种独立运行的方式为其它程序服务。在php中我们可以使用一些三方库对其进行操作已实现Web自动化测试。比较常用的库有facebook的webdriver以及codeception

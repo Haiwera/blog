@@ -2,7 +2,7 @@
 layout: post
 title:  "vim定制强大的php IDE"
 date:   2017-04-26 15:50:35 +0800
-tags: vim,config,php
+tags: vim config php
 categories: 工具
 ---
 

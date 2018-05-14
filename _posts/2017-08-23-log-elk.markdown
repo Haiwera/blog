@@ -2,7 +2,7 @@
 layout: post
 title:  "ELK基础使用"
 date:   2017-09-13 11:12:01 +0800
-tags: docker jenkins php
+tags: logstash elasticsearch
 categories: 工具
 ---
 logstash 是一款很好的日志流处理工具。elasticsearch负责日志存储和索引工具。Kibana是一款Web可视化统计工具。可以对elasticsearch数据进行可视化。

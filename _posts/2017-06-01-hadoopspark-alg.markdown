@@ -2,7 +2,7 @@
 layout: post
 title:  "大数据算法Hadoop&Spark"
 date:   2017-05-16 13:30:35 +0800
-tags: composer
+tags: hadoop spark
 categories: 读书总结
 ---
 《大数据算法》介绍了大数据处理领域的常用算法的MapReduce实现及Spark实现，讲解了MapReduce实现原理及应用较广的领域。

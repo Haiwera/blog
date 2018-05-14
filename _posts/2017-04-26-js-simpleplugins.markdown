@@ -2,7 +2,7 @@
 layout: post
 title:  "基于jquery写的一些小插件"
 date:   2017-04-26 10:27:35 +0800
-tags: javascript,jpreview,jfileupload,jtypeselect
+tags: javascript jquery
 categories: js小插件
 ---
 

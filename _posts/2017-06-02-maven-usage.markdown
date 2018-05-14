@@ -2,7 +2,7 @@
 layout: post
 title:  "Maven基本使用"
 date:   2017-06-02 10:10:35 +0800
-tags: composer
+tags: java mvn
 categories: 工具
 ---
 Maven项目对象模型(POM)，可以通过一小段描述信息(pom.xml)来管理项目的构建，报告和文档的软件项目管理工具,依赖/构建管理。

@@ -2,7 +2,7 @@
 layout: post
 title:  "Docker基于php:7.0-fpm安装memcached扩展"
 date:   2017-04-27 15:50:35 +0800
-tags: docker,php,memcached
+tags: docker php memcached
 categories: 工具
 ---
 

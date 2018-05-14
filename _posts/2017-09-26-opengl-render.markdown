@@ -2,7 +2,7 @@
 layout: post
 title:  "OPENGL 渲染管线"
 date:   2017-09-26 21:12:01 +0800
-tags: docker jenkins php
+tags: opengl
 categories: 读书总结
 ---
 

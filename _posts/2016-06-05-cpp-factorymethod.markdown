@@ -2,7 +2,7 @@
 layout: post
 title:  "C++ 抽象工厂模式简单实现"
 date:   2016-06-05 10:27:35 +0800
-tags: 设计模式,c++
+tags: pattern c++
 categories: 设计模式
 ---
 

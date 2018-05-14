@@ -2,7 +2,7 @@
 layout: post
 title:  "DevOps总结"
 date:   2017-06-27 21:10:35 +0800
-tags: devops
+tags: devops jenkins
 categories: 读书总结
 ---
 DevOps 是一套实践方法，在保证高质量的前提下缩短变更到部署到线上的时间。

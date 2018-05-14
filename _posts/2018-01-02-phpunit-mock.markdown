@@ -2,7 +2,7 @@
 layout: post
 title:  "项目中集成单元测试总结"
 date:   2018-01-02 21:12:01 +0800
-tags: http php
+tags: test autotest
 categories: 其它
 ---
 

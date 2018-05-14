@@ -2,7 +2,7 @@
 layout: post
 title:  "关于opengl的一些问题总结"
 date:   2017-10-22 21:12:01 +0800
-tags: http php
+tags: opengl
 categories: 其它
 ---
 

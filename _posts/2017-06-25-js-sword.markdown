@@ -2,7 +2,7 @@
 layout: post
 title:  "jsword历史年表"
 date:   2017-06-09 21:10:35 +0800
-tags: protocol distribute
+tags: javascript jquery
 categories: js小插件
 ---
 

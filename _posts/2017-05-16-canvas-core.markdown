@@ -2,7 +2,7 @@
 layout: post
 title:  "Canvas 核心技术"
 date:   2017-05-16 13:30:35 +0800
-tags: composer
+tags: javascript canvas
 categories: 读书总结
 ---
 《Canvas核心核技术》一书详细讲解了H5 Canvas 2D绘图的相关的知识。包括绘图环境、路径、剪辑区域、合成模式等基本概念，以及动画及游戏制作的基本流程。

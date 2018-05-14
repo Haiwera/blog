@@ -2,7 +2,7 @@
 layout: post
 title:  "基于requirejs的几个下拉框"
 date:   2018-04-22 17:12:01 +0800
-tags: requirejs javascript dropdown
+tags: requirejs javascript
 categories: js小插件
 ---
 

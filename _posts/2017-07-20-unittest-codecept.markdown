@@ -2,7 +2,7 @@
 layout: post
 title:  "Codecep&PHPUnit"
 date:   2017-07-19 11:10:35 +0800
-tags: test
+tags: test phpunit
 categories: 读书总结
 ---
 PHPUnit是php单元测试的一个框架，Codeception是基于phpunit写的一个测试套件工具集合，提供除单元测试外的功能测试、Web测试的API，它能快速自动构建单元测试代码，高效地将测试加入到项目中。

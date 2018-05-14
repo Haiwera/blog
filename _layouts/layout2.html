@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<style>
+</style>
+
+  {% include head.html %}
+
+  <body>
+    {% include header.html %}
+    <div class="page-content">
+      <div class="wrapper">
+		<div class="page-menu">
+        <div class="left-menu">
+        <form id="search">
+            <input name="keyword" value="" placeholder="输入关键字...">
+            <button>GO</button>
+        </form>
+        <br>
+        <div>
+        {% for tag in site.tags %}
+            {% assign count = tag | last | size %}
+            {% assign fontsize = count | times: 4 %}
+            <a class="post-tags-item" href="{{site.url}}/tags#{{ tag | first }}" title="{{ tag | first }}" data-count="{{ count }}" style="font-size: {% if fontsize > 24 %}24{% else %}{% if fontsize < 12 %}12{% else %}{{ fontsize }}{% endif %}{% endif %}px">{{ tag | first }}</a>
+        {% endfor %}
+        </div>
+        </div>
+		</div>
+		<div class="main-content">
+        {{ content }}
+		</div>
+      </div>
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>

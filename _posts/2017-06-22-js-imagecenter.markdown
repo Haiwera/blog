@@ -2,7 +2,7 @@
 layout: post
 title:  "简单的js图像居中"
 date:   2017-06-09 21:10:35 +0800
-tags: protocol distribute
+tags: javascript jquery
 categories: js小插件
 ---
 JQuery dom容器内自适应居中，可以是以短边为准缩放缺的地方留白，也可以是以长边为准缩放，多出地方隐藏。
