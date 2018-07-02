@@ -6,7 +6,7 @@ tags: magento js
 categories: magento
 ---
 
-问题表象：Magento mage无法向body上绑定contentUpdated事件，导致所有元素调用`.trigger('contentUpdated')`无首效，从而导致所有动态加载的`<script type="text/x-magento-init">`代码块不起作用。
+问题表象：Magento mage无法向body上绑定contentUpdated事件，导致所有元素调用`.trigger('contentUpdated')`无效，从而导致所有动态加载的`<script type="text/x-magento-init">`代码块不起作用。
 
 <!--break-->
 
